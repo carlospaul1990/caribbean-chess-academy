@@ -57,11 +57,11 @@ div.stButton>button[kind='primary']{background:#0F1E36!important;color:#FFFFFF!i
 .kpi-icon{font-size:1.5rem;margin-bottom:4px;}
 .kpi-title{font-size:0.68rem;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:0.5px;}
 .kpi-val{font-size:0.95rem;font-weight:800;color:#0F1E36;margin-top:2px;}
-.cat-card{background:#FFFFFF;border:1.5px solid #E2E8F0;border-left:6px solid #D90429;border-radius:14px;padding:16px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 12px rgba(15,30,54,0.04);}
-.cat-title{font-size:1.3rem;font-weight:900;color:#0F1E36;}
+.cat-card{background:#FFFFFF;border:1.5px solid #E2E8F0;border-left:6px solid #D90429;border-radius:14px;padding:14px 16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 12px rgba(15,30,54,0.04);}
+.cat-title{font-size:1.25rem;font-weight:900;color:#0F1E36;}
 .cat-title span{color:#D90429;}
 .cat-badge{background:#0F1E36;color:#EAB308;font-size:0.72rem;font-weight:800;padding:4px 10px;border-radius:6px;text-transform:uppercase;}
-.elo-alert{background:#FEF2F2;border:1.5px solid #FCA5A5;color:#991B1B;border-radius:12px;padding:12px 14px;font-size:0.85rem;font-weight:800;text-align:center;text-transform:uppercase;margin-top:10px;}
+.elo-note{background:#EFF6FF;border:1.5px solid #93C5FD;color:#1E3A8A;border-radius:12px;padding:12px 14px;font-size:0.84rem;font-weight:800;text-align:center;margin-top:10px;line-height:1.4;}
 .round-row{background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:12px 16px;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 3px 10px rgba(15,30,54,0.03);}
 .round-day{font-size:0.75rem;font-weight:800;color:#D90429;text-transform:uppercase;}
 .round-date{font-size:0.98rem;font-weight:800;color:#0F1E36;}
@@ -103,7 +103,7 @@ FUTUROS_EVENTOS = [
         "titulo": "Torneo Futuras Estrellas V2 (Evento Estelar)",
         "formato": "Clásico Infantil • 60m + 30s • Válido FIDE",
         "sede": "Acrópolis Business Mall, Distrito Nacional",
-        "detalle": "Categorías Sub-1600 y Sub-1800. Premios especiales en Gift Cards para los 3 primeros lugares. Inscripción RD$650.",
+        "detalle": "Categorías Sub-1600, Sub-1800 y Up-1801. Jugadores sin ELO FIDE participan en Sub-1600. Premios en Gift Cards para los 3 primeros lugares. Inscripción RD$650.",
         "destacado": True
     },
     {
@@ -111,7 +111,7 @@ FUTUROS_EVENTOS = [
         "fecha_txt": "20 de Febrero, 2027",
         "fecha_ics": "20270220",
         "titulo": "Copa Blitz Independencia Caribbean Chess",
-        "formato": "Blitz • 3m + 2s • Sub-1600 y Sub-1800",
+        "formato": "Blitz • 3m + 2s • Sub-1600, Sub-1800 y Up-1801",
         "sede": "Acrópolis Business Mall, Santo Domingo",
         "detalle": "Torneo relámpago a 9 rondas sistema suizo con premiación en efectivo y medallas por categoría.",
         "destacado": False
@@ -199,14 +199,15 @@ if st.session_state.vista_cca == "torneo":
     col_cat, col_info = st.columns([1.1, 1], gap="large")
     with col_cat:
         st.markdown("#### 🎯 Categorías Oficiales por Rating ELO")
-        st.markdown("""<div class="cat-card"><div><div class="cat-title">♟️ SUB <span>1600</span></div><div style="font-size:0.82rem;color:#64748B;font-weight:600;margin-top:2px;">Jugadores con rating ELO menor a 1600</div></div><div class="cat-badge">Clásico Infantil</div></div>
-<div class="cat-card"><div><div class="cat-title">♞ SUB <span>1800</span></div><div style="font-size:0.82rem;color:#64748B;font-weight:600;margin-top:2px;">Jugadores con rating ELO entre 1600 y 1799</div></div><div class="cat-badge">Clásico Infantil</div></div>
-<div class="elo-alert">⚠️ Requisito Obligatorio: Todos los participantes deben tener ELO</div>""", unsafe_allow_html=True)
+        st.markdown("""<div class="cat-card"><div><div class="cat-title">♟️ SUB <span>1600</span></div><div style="font-size:0.8rem;color:#64748B;font-weight:600;margin-top:2px;">ELO menor a 1600 y jugadores sin ELO FIDE</div></div><div class="cat-badge">Clásico Infantil</div></div>
+<div class="cat-card"><div><div class="cat-title">♞ SUB <span>1800</span></div><div style="font-size:0.8rem;color:#64748B;font-weight:600;margin-top:2px;">Jugadores con rating ELO entre 1600 y 1799</div></div><div class="cat-badge">Clásico Infantil</div></div>
+<div class="cat-card"><div><div class="cat-title">♔ UP <span>1801</span></div><div style="font-size:0.8rem;color:#64748B;font-weight:600;margin-top:2px;">Jugadores con rating ELO de 1801 en adelante</div></div><div class="cat-badge">Élite Infantil</div></div>
+<div class="elo-note">ℹ️ Nota: Los jugadores sin ELO FIDE solo pueden participar en la categoría Sub-1600.</div>""", unsafe_allow_html=True)
     with col_info:
         st.markdown("#### 🏆 Premiación y Sede")
         st.markdown("""<div style="background:#FFFBEB;border:1.5px solid #FDE68A;border-radius:14px;padding:16px;margin-bottom:12px;">
 <div style="font-weight:900;color:#92400E;font-size:1rem;">🎁 PREMIOS ESPECIALES EN GIFT CARDS</div>
-<p style="color:#78350F;font-size:0.86rem;margin:6px 0 0 0;line-height:1.45;">Se otorgarán <strong>Gift Cards especiales para los 3 primeros lugares</strong> de cada categoría oficial (Sub-1600 y Sub-1800).</p></div>
+<p style="color:#78350F;font-size:0.86rem;margin:6px 0 0 0;line-height:1.45;">Se otorgarán <strong>Gift Cards especiales para los 3 primeros lugares</strong> de cada categoría oficial (Sub-1600, Sub-1800 y Up-1801).</p></div>
 <div style="background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:14px;padding:16px;">
 <div style="font-weight:900;color:#0F1E36;font-size:0.98rem;">📍 UBICACIÓN DEL TORNEO</div>
 <p style="color:#475569;font-size:0.86rem;margin:6px 0 10px 0;line-height:1.45;"><strong>Acrópolis Business Mall</strong>, Av. Winston Churchill, Distrito Nacional, Santo Domingo.</p>
@@ -268,15 +269,15 @@ elif st.session_state.vista_cca == "eventos":
 
 elif st.session_state.vista_cca == "inscripcion":
     st.markdown("#### 📝 Formulario de Inscripción Oficial")
-    st.caption("Costo de inscripción Futuras Estrellas V2: **RD$650** • Adjunta la foto o captura de tu comprobante de pago.")
+    st.caption("Costo de inscripción Futuras Estrellas V2: **RD$650** • Los jugadores sin ELO FIDE participan en **Sub-1600**.")
     with st.form("form_cca"):
         c1, c2 = st.columns(2, gap="medium")
         with c1:
             nombre = st.text_input("👤 Nombre Completo del Jugador *", placeholder="Ej. Mateo Gómez")
             torneo_sel = st.selectbox("🏆 Evento / Torneo *", [e["titulo"] for e in FUTUROS_EVENTOS])
-            id_fide = st.text_input("🌐 ID FIDE / ELO Actual (Obligatorio) *", placeholder="Ej. 6409876 (ELO: 1580)")
+            id_fide = st.text_input("🌐 ID FIDE / ELO (Si aplica)", placeholder="Ej. 6409876 (ELO: 1580) o Sin ELO")
         with c2:
-            categoria = st.selectbox("🎯 Categoría por ELO *", ["Sub-1600", "Sub-1800"])
+            categoria = st.selectbox("🎯 Categoría por ELO *", ["Sub-1600", "Sub-1800", "Up-1801"])
             telefono = st.text_input("📱 WhatsApp del Padre / Tutor *", placeholder="Ej. 849-555-0123")
             pago_metodo = st.selectbox("💳 Método de Pago Realizado *", ["Transferencia Bancaria (RD$650)", "Depósito Bancario (RD$650)"])
         st.markdown("<hr style='margin:12px 0;border-color:#E2E8F0;'>", unsafe_allow_html=True)
@@ -288,16 +289,19 @@ elif st.session_state.vista_cca == "inscripcion":
         submit = st.form_submit_button("✅ VALIDAR COMPROBANTE Y GENERAR INSCRIPCIÓN", use_container_width=True)
 
     if submit:
-        if not nombre or not telefono or not id_fide:
-            st.error("⚠️ Completa el nombre del jugador, su ID/ELO FIDE y WhatsApp.")
+        if not nombre or not telefono:
+            st.error("⚠️ Completa el nombre del jugador y el WhatsApp de contacto.")
+        elif categoria in ["Sub-1800", "Up-1801"] and not id_fide.strip():
+            st.error("⚠️ Para jugar en **Sub-1800** o **Up-1801** debes indicar tu ID FIDE / ELO. Los jugadores sin ELO deben inscribirse en **Sub-1600**.")
         elif comprobante is None:
             st.error("🚫 **Comprobante obligatorio:** Debes subir una foto o captura de pantalla del pago para completar tu inscripción.")
         else:
+            elo_txt = id_fide.strip() if id_fide.strip() else "Sin ELO FIDE (Categoría Sub-1600)"
             msg_wa = (
                 f"*INSCRIPCIÓN CONFIRMADA - CARIBBEAN CHESS ACADEMY*%0A"
                 f"• *Torneo:* {urllib.parse.quote(torneo_sel)}%0A"
                 f"• *Jugador:* {urllib.parse.quote(nombre)}%0A"
-                f"• *ID/ELO FIDE:* {urllib.parse.quote(id_fide)}%0A"
+                f"• *ID/ELO FIDE:* {urllib.parse.quote(elo_txt)}%0A"
                 f"• *Categoría:* {urllib.parse.quote(categoria)}%0A"
                 f"• *Pago:* {urllib.parse.quote(pago_metodo)}%0A"
                 f"• *Comprobante:* Adjunto ({urllib.parse.quote(comprobante.name)})%0A"
