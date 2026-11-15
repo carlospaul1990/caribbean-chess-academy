@@ -18,7 +18,7 @@ if "vista_cca" not in st.session_state:
     st.session_state.vista_cca = "torneo"
 
 # -----------------------------------------------------------------------------
-# LOGO DE CARIBBEAN CHESS ACADEMY (CARGA LOCAL O VECTORIAL DE ALTA PRECISIÓN)
+# LOGO DE CARIBBEAN CHESS ACADEMY
 # -----------------------------------------------------------------------------
 def get_cca_logo_html():
     if os.path.exists("logo.png"):
@@ -80,7 +80,6 @@ CSS_LIGHT_MODERNO = """
 
 #MainMenu, footer, header {visibility: hidden;}
 
-/* HERO BANNER SOBRE BLANCO DE ALTO IMPACTO */
 .hero-white-card {
     background: #FFFFFF;
     border: 1.5px solid var(--border-light);
@@ -169,7 +168,6 @@ CSS_LIGHT_MODERNO = """
     color: var(--gold);
 }
 
-/* NAVEGACIÓN PRINCIPAL MODERNA */
 .nav-prompt {
     text-align: center;
     font-size: 0.72rem;
@@ -216,7 +214,6 @@ div.stButton > button[kind="primary"] {
     box-shadow: 0 8px 20px rgba(15, 30, 54, 0.22) !important;
 }
 
-/* TARJETAS DE DATOS CLAVE (KPIs DEL TORNEO) */
 .kpi-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -259,7 +256,6 @@ div.stButton > button[kind="primary"] {
     margin-top: 2px;
 }
 
-/* TARJETAS DE CATEGORÍAS ELO */
 .cat-card {
     background: #FFFFFF;
     border: 1.5px solid var(--border-light);
@@ -307,7 +303,6 @@ div.stButton > button[kind="primary"] {
     margin-top: 8px;
 }
 
-/* TARJETAS DE CRONOGRAMA DE RONDAS */
 .round-row {
     background: #FFFFFF;
     border: 1.5px solid var(--border-light);
@@ -353,7 +348,6 @@ div.stButton > button[kind="primary"] {
     font-weight: 800;
 }
 
-/* ESTILOS DEL FORMULARIO Y FILE UPLOADER SOBRE FONDO BLANCO */
 [data-testid="stForm"] {
     background: #FFFFFF !important;
     border: 1.5px solid #CBD5E1 !important;
@@ -383,4 +377,43 @@ div[data-baseweb="input"] > div:focus-within,
 div[data-baseweb="select"] > div:focus-within {
     border-color: var(--red-king) !important;
     background-color: #FFFFFF !important;
-    box-shadow: 0 0 0
+    box-shadow: 0 0 0 3px rgba(217, 4, 41, 0.12) !important;
+}
+
+[data-testid="stFileUploader"] section {
+    background-color: #F8FAFC !important;
+    border: 2px dashed #94A3B8 !important;
+    border-radius: 14px !important;
+    padding: 14px !important;
+    transition: all 0.2s ease !important;
+}
+
+[data-testid="stFileUploader"] section:hover {
+    border-color: var(--red-king) !important;
+    background-color: #FEF2F2 !important;
+}
+
+[data-testid="stFileUploader"] button {
+    background-color: var(--navy) !important;
+    color: #FFFFFF !important;
+    border-radius: 8px !important;
+    font-weight: 700 !important;
+    border: none !important;
+}
+
+[data-testid="stFormSubmitButton"] button {
+    background: linear-gradient(135deg, #D90429 0%, #A4031F 100%) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 0.95rem 1.2rem !important;
+    margin-top: 0.8rem !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 1.05rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.8px !important;
+    text-transform: uppercase !important;
+    box-shadow: 0 8px 20px rgba(217, 4, 41, 0.3) !important;
+}
+
+[data-
