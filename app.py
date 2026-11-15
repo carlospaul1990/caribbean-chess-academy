@@ -4,9 +4,11 @@ import urllib.parse
 import base64
 import os
 
+ICONO_PAGINA = "logo.png" if os.path.exists("logo.png") else "♔"
+
 st.set_page_config(
     page_title="Caribbean Chess Academy | Torneos y Eventos",
-    page_icon="♔",
+    page_icon=ICONO_PAGINA,
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -282,45 +284,4 @@ elif st.session_state.vista_cca == "inscripcion":
             pago_metodo = st.selectbox("💳 Método de Pago Realizado *", ["Transferencia Bancaria (RD$650)", "Depósito Bancario (RD$650)"])
         st.markdown("<hr style='margin:12px 0;border-color:#E2E8F0;'>", unsafe_allow_html=True)
         comprobante = st.file_uploader(
-            "📸 Adjuntar Foto o Captura del Comprobante (Obligatorio) *",
-            type=["png", "jpg", "jpeg", "webp", "pdf"],
-            help="Sube una foto desde el celular o captura de transferencia."
-        )
-        submit = st.form_submit_button("✅ VALIDAR COMPROBANTE Y GENERAR INSCRIPCIÓN", use_container_width=True)
-
-    if submit:
-        if not nombre or not telefono:
-            st.error("⚠️ Completa el nombre del jugador y el WhatsApp de contacto.")
-        elif categoria in ["Sub-1800", "Up-1801"] and not id_fide.strip():
-            st.error("⚠️ Para jugar en **Sub-1800** o **Up-1801** debes indicar tu ID FIDE / ELO. Los jugadores sin ELO deben inscribirse en **Sub-1600**.")
-        elif comprobante is None:
-            st.error("🚫 **Comprobante obligatorio:** Debes subir una foto o captura de pantalla del pago para completar tu inscripción.")
-        else:
-            elo_txt = id_fide.strip() if id_fide.strip() else "Sin ELO FIDE (Categoría Sub-1600)"
-            msg_wa = (
-                f"*INSCRIPCIÓN CONFIRMADA - CARIBBEAN CHESS ACADEMY*%0A"
-                f"• *Torneo:* {urllib.parse.quote(torneo_sel)}%0A"
-                f"• *Jugador:* {urllib.parse.quote(nombre)}%0A"
-                f"• *ID/ELO FIDE:* {urllib.parse.quote(elo_txt)}%0A"
-                f"• *Categoría:* {urllib.parse.quote(categoria)}%0A"
-                f"• *Pago:* {urllib.parse.quote(pago_metodo)}%0A"
-                f"• *Comprobante:* Adjunto ({urllib.parse.quote(comprobante.name)})%0A"
-                f"• *Contacto:* {urllib.parse.quote(telefono)}"
-            )
-            st.success(f"✅ ¡Comprobante verificado (`{comprobante.name}`) y ficha lista para **{nombre}**!")
-            if comprobante.type.startswith("image"):
-                with st.expander("👁️ Ver vista previa del comprobante cargado", expanded=True):
-                    st.image(comprobante, width=260)
-            st.info("📲 **Último paso:** Pulsa el botón verde abajo para abrir WhatsApp y recuerda **adjuntar esta misma imagen** en el chat.")
-            st.link_button(
-                "📲 ENVIAR FICHA Y COMPROBANTE POR WHATSAPP (849-440-3222)",
-                f"https://wa.me/18494403222?text={msg_wa}",
-                use_container_width=True
-            )
-
-msg_directo = urllib.parse.quote("Hola Caribbean Chess Academy, deseo más información sobre sus torneos y próximos eventos.")
-st.markdown(
-    f'<div class="sticky-bottom-bar"><a href="https://wa.me/18494403222?text={msg_directo}" target="_blank" class="sticky-wa-btn">'
-    '💬 MÁS INFORMACIÓN E INSCRIPCIONES • 849-440-3222</a></div>',
-    unsafe_allow_html=True
-)
+            "📸 Adjuntar
