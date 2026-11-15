@@ -2,9 +2,36 @@ import streamlit as st
 import streamlit.components.v1 as components
 import urllib.parse
 import base64
+import io
 import os
 
-ICONO_PAGINA = "logo.png" if os.path.exists("logo.png") else "♔"
+def obtener_rey_recortado(tamano=None):
+    if not os.path.exists("logo.png"):
+        return None
+    try:
+        from PIL import Image
+        img = Image.open("logo.png").convert("RGBA")
+        w, h = img.size
+        # Recortar exclusivamente la figura del rey (eliminando texto inferior)
+        solo_rey = img.crop((0, 0, w, int(h * 0.70)))
+        bbox = solo_rey.getbbox()
+        if bbox:
+            solo_rey = solo_rey.crop(bbox)
+        if tamano:
+            lado = max(solo_rey.size)
+            cuadrado = Image.new("RGBA", (lado, lado), (255, 255, 255, 0))
+            cuadrado.paste(
+                solo_rey,
+                ((lado - solo_rey.width) // 2, (lado - solo_rey.height) // 2)
+            )
+            return cuadrado.resize((tamano, tamano), Image.LANCZOS)
+        return solo_rey
+    except Exception:
+        return None
+
+ICONO_PAGINA = obtener_rey_recortado(64) or (
+    "logo.png" if os.path.exists("logo.png") else "♔"
+)
 
 st.set_page_config(
     page_title="Caribbean Chess Academy | Torneos y Eventos",
@@ -17,24 +44,30 @@ if "vista_cca" not in st.session_state:
     st.session_state.vista_cca = "torneo"
 
 def get_cca_logo_html():
+    rey_img = obtener_rey_recortado()
+    if rey_img is not None:
+        buf = io.BytesIO()
+        rey_img.save(buf, format="PNG")
+        data = base64.b64encode(buf.getvalue()).decode("utf-8")
+        return (
+            f'<img src="data:image/png;base64,{data}" '
+            'class="cca-logo-img" alt="Caribbean Chess Academy">'
+        )
     if os.path.exists("logo.png"):
         with open("logo.png", "rb") as f:
             data = base64.b64encode(f.read()).decode("utf-8")
         return (
             f'<img src="data:image/png;base64,{data}" '
-            'class="cca-logo-img" alt="CCA">'
+            'class="cca-logo-img" alt="Caribbean Chess Academy">'
         )
     return """<div class="cca-logo-vector">
-<svg viewBox="0 0 220 230" width="130" height="135">
+<svg viewBox="65 8 90 172" width="105" height="155">
 <path d="M105,12 H115 V22 H125 V32 H115 V42 H105 V32 H95 V22 H105 Z" fill="#D90429"/>
 <path d="M84,48 C84,42 136,42 136,48 L128,82 H136 C140,82 140,92 136,92 H127 L142,152 C148,158 148,170 142,175 H78 C72,170 72,158 78,152 L93,92 H84 C80,92 80,82 84,82 H92 Z" fill="#D90429"/>
 <circle cx="110" cy="112" r="15" fill="#FFFFFF"/>
 <path d="M101,126 H119 L124,158 C128,162 128,170 124,175 H96 C92,170 92,162 96,158 Z" fill="#FFFFFF"/>
 <path d="M103,112 C101,108 105,103 110,104 C115,103 119,108 117,112 C119,116 115,120 110,119 C105,120 101,116 103,112 Z" fill="none" stroke="#0F1E36" stroke-width="1.8"/>
 <path d="M110,104 V119 M104,111 H116" stroke="#0F1E36" stroke-width="1.3"/>
-<text x="110" y="191" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="7.2" font-weight="700" letter-spacing="1.2" fill="#0F1E36">CONSTRUYENDO MENTES BRILLANTES</text>
-<text x="110" y="209" text-anchor="middle" font-family="Cinzel,serif" font-size="15.5" font-weight="700" fill="#0F1E36">CARIBBEAN CHESS</text>
-<text x="110" y="222" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="8.5" font-weight="600" letter-spacing="4" fill="#475569">ACADEMY</text>
 </svg></div>"""
 
 st.markdown("""<style>
@@ -44,7 +77,7 @@ st.markdown("""<style>
 .stApp{background-color:#FFFFFF;background-image:radial-gradient(circle at 0% 0%,rgba(217,4,41,0.04) 0%,transparent 40%),radial-gradient(circle at 100% 10%,rgba(15,30,54,0.05) 0%,transparent 45%);color:#0F172A;font-family:'Montserrat',sans-serif;}
 #MainMenu,footer,header{visibility:hidden;}
 .hero-white-card{background:#FFFFFF;border:1.5px solid #E2E8F0;border-top:6px solid #D90429;border-radius:22px 22px 0 0;border-bottom:none;padding:1.6rem;box-shadow:0 12px 35px rgba(15,30,54,0.06);display:flex;align-items:center;gap:24px;}
-.cca-logo-img{width:145px;height:auto;object-fit:contain;flex-shrink:0;}
+.cca-logo-img{width:118px;max-height:155px;object-fit:contain;flex-shrink:0;}
 .cca-logo-vector{flex-shrink:0;display:flex;align-items:center;justify-content:center;}
 .pill-badge{display:inline-flex;align-items:center;gap:6px;background:#FEF2F2;border:1px solid #FECACA;color:#D90429;padding:5px 14px;border-radius:999px;font-size:0.75rem;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:10px;}
 .hero-main-title{font-family:'Montserrat',sans-serif;font-size:2.55rem;font-weight:900;line-height:1.02;color:#0F1E36;margin:0;letter-spacing:-0.5px;text-transform:uppercase;}
@@ -87,7 +120,7 @@ div[data-baseweb='input']>div,div[data-baseweb='select']>div{background-color:#F
 [data-testid='stFormSubmitButton'] button p{color:#FFFFFF!important;font-weight:800!important;}
 .sticky-bottom-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);border-top:1px solid #E2E8F0;padding:10px 16px;z-index:9999;display:flex;justify-content:center;}
 .sticky-wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;max-width:600px;background:linear-gradient(90deg,#16A34A 0%,#15803D 100%);color:#FFFFFF!important;text-decoration:none;font-weight:800;font-size:0.92rem;padding:13px 18px;border-radius:12px;box-shadow:0 6px 18px rgba(22,163,74,0.32);text-transform:uppercase;}
-@media(max-width:768px){.hero-white-card{flex-direction:column;text-align:center;padding:1.3rem 1rem 1rem 1rem;gap:12px;}.cca-logo-img{width:115px;}.hero-main-title{font-size:1.95rem;}.kpi-grid{grid-template-columns:repeat(2,1fr);}.kpi-grid .kpi-box:last-child{grid-column:span 2;}div.stButton>button[kind='secondary'],div.stButton>button[kind='primary']{font-size:0.8rem!important;padding:0.75rem 0.4rem!important;}}
+@media(max-width:768px){.hero-white-card{flex-direction:column;text-align:center;padding:1.3rem 1rem 1rem 1rem;gap:12px;}.cca-logo-img{width:95px;max-height:125px;}.hero-main-title{font-size:1.95rem;}.kpi-grid{grid-template-columns:repeat(2,1fr);}.kpi-grid .kpi-box:last-child{grid-column:span 2;}div.stButton>button[kind='secondary'],div.stButton>button[kind='primary']{font-size:0.8rem!important;padding:0.75rem 0.4rem!important;}}
 </style>""", unsafe_allow_html=True)
 
 RONDAS_TORNEO = [
