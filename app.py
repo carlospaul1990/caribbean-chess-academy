@@ -58,11 +58,11 @@ st.markdown(
     ".kpi-icon{font-size:1.5rem;margin-bottom:4px;}"
     ".kpi-title{font-size:0.68rem;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:0.5px;}"
     ".kpi-val{font-size:0.95rem;font-weight:800;color:#0F1E36;margin-top:2px;}"
-    ".cat-card{background:#FFFFFF;border:1.5px solid #E2E8F0;border-left:6px solid #D90429;border-radius:14px;padding:14px 16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 12px rgba(15,30,54,0.04);}"
-    ".cat-title{font-size:1.25rem;font-weight:900;color:#0F1E36;}"
+    ".cat-card{background:#FFFFFF;border:1.5px solid #E2E8F0;border-left:6px solid #D90429;border-radius:14px;padding:16px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 12px rgba(15,30,54,0.04);}"
+    ".cat-title{font-size:1.3rem;font-weight:900;color:#0F1E36;}"
     ".cat-title span{color:#D90429;}"
     ".cat-badge{background:#0F1E36;color:#EAB308;font-size:0.72rem;font-weight:800;padding:4px 10px;border-radius:6px;text-transform:uppercase;}"
-    ".elo-alert{background:#FEF2F2;border:1.5px solid #FCA5A5;color:#991B1B;border-radius:12px;padding:12px 14px;font-size:0.85rem;font-weight:800;text-align:center;text-transform:uppercase;margin-top:8px;}"
+    ".elo-alert{background:#FEF2F2;border:1.5px solid #FCA5A5;color:#991B1B;border-radius:12px;padding:12px 14px;font-size:0.85rem;font-weight:800;text-align:center;text-transform:uppercase;margin-top:10px;}"
     ".round-row{background:#FFFFFF;border:1.5px solid #E2E8F0;border-radius:14px;padding:12px 16px;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 3px 10px rgba(15,30,54,0.03);}"
     ".round-day{font-size:0.75rem;font-weight:800;color:#D90429;text-transform:uppercase;}"
     ".round-date{font-size:0.98rem;font-weight:800;color:#0F1E36;}"
@@ -92,10 +92,10 @@ st.markdown(
 
 RONDAS_TORNEO = [
     {"dia": "Sábado", "fecha": "9 Enero 2027", "ronda": "1ra Ronda", "hora": "2:00 PM"},
-    {"dia": "Sábado", "fecha": "9 Enero 2027", "ronda": "2da Ronda", "hora": "4:00 PM"},
-    {"dia": "Domingo", "fecha": "10 Enero 2027", "ronda": "3ra Ronda", "hora": "9:00 AM"},
+    {"dia": "Sábado", "fecha": "9 Enero 2027", "ronda": "2da Ronda", "hora": "6:00 PM"},
+    {"dia": "Domingo", "fecha": "10 Enero 2027", "ronda": "3ra Ronda", "hora": "9:00 PM"},
     {"dia": "Domingo", "fecha": "10 Enero 2027", "ronda": "4ta Ronda", "hora": "2:00 PM"},
-    {"dia": "Domingo", "fecha": "10 Enero 2027", "ronda": "5ta Ronda", "hora": "4:00 PM"},
+    {"dia": "Domingo", "fecha": "10 Enero 2027", "ronda": "5ta Ronda", "hora": "6:00 PM"},
 ]
 
 FUTUROS_EVENTOS = [
@@ -106,7 +106,7 @@ FUTUROS_EVENTOS = [
         "titulo": "Torneo Futuras Estrellas V2 (Evento Estelar)",
         "formato": "Clásico Infantil • 60m + 30s • Válido FIDE",
         "sede": "Acrópolis Business Mall, Distrito Nacional",
-        "detalle": "Categorías Sub-1600, Sub-1800 y Up-1801. Premios especiales en Gift Cards para los 3 primeros lugares. Inscripción RD$650.",
+        "detalle": "Categorías Sub-1600 y Sub-1800. Premios especiales en Gift Cards para los 3 primeros lugares. Inscripción RD$650.",
         "destacado": True
     },
     {
@@ -114,7 +114,7 @@ FUTUROS_EVENTOS = [
         "fecha_txt": "20 de Febrero, 2027",
         "fecha_ics": "20270220",
         "titulo": "Copa Blitz Independencia Caribbean Chess",
-        "formato": "Blitz • 3m + 2s • Abierto y Juvenil",
+        "formato": "Blitz • 3m + 2s • Sub-1600 y Sub-1800",
         "sede": "Acrópolis Business Mall, Santo Domingo",
         "detalle": "Torneo relámpago a 9 rondas sistema suizo con premiación en efectivo y medallas por categoría.",
         "destacado": False
@@ -146,7 +146,7 @@ FUTUROS_EVENTOS = [
         "titulo": "Torneo Intercolegial por Equipos CCA",
         "formato": "Rápido por Equipos (4 Tableros)",
         "sede": "Santo Domingo, Distrito Nacional",
-        "detalle": "Representa a tu colegio o academia en un torneo dinámico por escuadras infantiles y juveniles.",
+        "detalle": "Representa a tu colegio o academia en un torneo dinámico por escuadras infantiles.",
         "destacado": False
     },
 ]
@@ -202,139 +202,4 @@ if st.session_state.vista_cca == "torneo":
         '<div class="kpi-box"><div class="kpi-icon">⏱️</div><div class="kpi-title">Ritmo Clásico</div><div class="kpi-val">60 Min + 30 Seg</div></div>'
         '<div class="kpi-box"><div class="kpi-icon">🌐</div><div class="kpi-title">Aval Oficial</div><div class="kpi-val">Rating FIDE</div></div>'
         '<div class="kpi-box"><div class="kpi-icon">🎁</div><div class="kpi-title">Premios Top 3</div><div class="kpi-val">Gift Cards</div></div>'
-        '<div class="kpi-box"><div class="kpi-icon">💵</div><div class="kpi-title">Inscripción</div><div class="kpi-val" style="color:#D90429;">RD$ 650</div></div>'
-        '<div class="kpi-box"><div class="kpi-icon">📍</div><div class="kpi-title">Sede Oficial</div><div class="kpi-val">Acrópolis Mall</div></div>'
-        '</div>',
-        unsafe_allow_html=True
-    )
-    col_cat, col_info = st.columns([1.1, 1], gap="large")
-    with col_cat:
-        st.markdown("#### 🎯 Categorías por Rating ELO")
-        st.markdown(
-            '<div class="cat-card"><div><div class="cat-title">♟️ SUB <span>1600</span></div><div style="font-size:0.78rem;color:#64748B;font-weight:600;">Jugadores con ELO menor a 1600</div></div><div class="cat-badge">Clásico Infantil</div></div>'
-            '<div class="cat-card"><div><div class="cat-title">♞ SUB <span>1800</span></div><div style="font-size:0.78rem;color:#64748B;font-weight:600;">Jugadores con ELO entre 1600 y 1799</div></div><div class="cat-badge">Clásico Infantil</div></div>'
-            '<div class="cat-card"><div><div class="cat-title">♔ UP <span>1801</span></div><div style="font-size:0.78rem;color:#64748B;font-weight:600;">Jugadores con ELO de 1801 en adelante</div></div><div class="cat-badge">Élite Infantil</div></div>'
-            '<div class="elo-alert">⚠️ Requisito Obligatorio: Todos los participantes deben tener ELO</div>',
-            unsafe_allow_html=True
-        )
-    with col_info:
-        st.markdown("#### 🏆 Premiación y Sede")
-        st.markdown(
-            '<div style="background:#FFFBEB;border:1.5px solid #FDE68A;border-radius:14px;padding:16px;margin-bottom:12px;">'
-            '<div style="font-weight:900;color:#92400E;font-size:1rem;">🎁 PREMIOS ESPECIALES EN GIFT CARDS</div>'
-            '<p style="color:#78350F;font-size:0.86rem;margin:6px 0 0 0;line-height:1.45;">Se otorgarán <strong>Gift Cards especiales para los 3 primeros lugares</strong> de cada categoría oficial (Sub-1600, Sub-1800 y Up-1801).</p></div>'
-            '<div style="background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:14px;padding:16px;">'
-            '<div style="font-weight:900;color:#0F1E36;font-size:0.98rem;">📍 UBICACIÓN DEL TORNEO</div>'
-            '<p style="color:#475569;font-size:0.86rem;margin:6px 0 10px 0;line-height:1.45;"><strong>Acrópolis Business Mall</strong>, Av. Winston Churchill, Distrito Nacional, Santo Domingo.</p>'
-            '<a href="https://maps.google.com/?q=Acropolis+Business+Mall+Santo+Domingo" target="_blank" style="display:inline-block;background:#0F1E36;color:#FFFFFF;font-size:0.78rem;font-weight:800;padding:8px 14px;border-radius:8px;text-decoration:none;text-transform:uppercase;">🗺️ Abrir en Google Maps</a></div>',
-            unsafe_allow_html=True
-        )
-
-elif st.session_state.vista_cca == "rondas":
-    st.markdown("#### 📅 Calendario Oficial de Rondas — Futuras Estrellas V2")
-    st.caption("Sistema Suizo a 5 rondas • Ritmo Clásico: 60 minutos + 30 segundos por jugada.")
-    for r in RONDAS_TORNEO:
-        st.markdown(
-            f'<div class="round-row"><div><div class="round-day">{r["dia"]}</div><div class="round-date">{r["fecha"]}</div></div>'
-            f'<div class="round-badge"><div class="round-num">{r["ronda"]}</div><div class="round-time">🕒 {r["hora"]}</div></div></div>',
-            unsafe_allow_html=True
-        )
-    st.download_button(
-        label="📲 AGENDAR TORNEO V2 EN MI CALENDARIO (.ICS)",
-        data=generar_ics("Torneo Futuras Estrellas V2", "20270109", "Acrópolis Business Mall, Santo Domingo", "Torneo Clásico Infantil 60m+30s válido FIDE."),
-        file_name="futuras_estrellas_v2_caribbean_chess.ics",
-        mime="text/calendar",
-        use_container_width=True
-    )
-
-elif st.session_state.vista_cca == "eventos":
-    st.markdown("#### 🏆 Calendario de Próximos Eventos — Caribbean Chess Academy")
-    st.caption("Agenda nuestras próximas competencias oficiales y reserva tu participación con tiempo.")
-    filtro_mes = st.selectbox("Filtrar por mes:", ["Todos los eventos"] + [e["mes"] for e in FUTUROS_EVENTOS], label_visibility="collapsed")
-    eventos_visibles = [e for e in FUTUROS_EVENTOS if filtro_mes == "Todos los eventos" or e["mes"] == filtro_mes]
-
-    for idx, ev in enumerate(eventos_visibles):
-        clase_card = "event-card featured" if ev["destacado"] else "event-card"
-        clase_tag = "ev-tag red" if ev["destacado"] else "ev-tag"
-        st.markdown(
-            f'<div class="{clase_card}">'
-            f'<span class="{clase_tag}">🗓️ {ev["fecha_txt"]}</span>'
-            f'<div class="ev-title">{ev["titulo"]}</div>'
-            f'<div class="ev-meta">♟️ {ev["formato"]} &nbsp;|&nbsp; 📍 {ev["sede"]}</div>'
-            f'<p class="ev-desc">{ev["detalle"]}</p>'
-            f'</div>',
-            unsafe_allow_html=True
-        )
-        b1, b2 = st.columns(2, gap="small")
-        with b1:
-            st.download_button(
-                label="📅 Guardar Fecha (.ICS)",
-                data=generar_ics(ev["titulo"], ev["fecha_ics"], ev["sede"], ev["detalle"]),
-                file_name=f"evento_cca_{idx}.ics",
-                mime="text/calendar",
-                key=f"ics_ev_{idx}",
-                use_container_width=True
-            )
-        with b2:
-            msg_ev = urllib.parse.quote(f"Hola Caribbean Chess Academy, me gustaría recibir información sobre el evento: {ev['titulo']} ({ev['fecha_txt']}).")
-            st.link_button(
-                label="📲 Consultar por WhatsApp",
-                url=f"https://wa.me/18494403222?text={msg_ev}",
-                use_container_width=True
-            )
-        st.markdown("<div style='height:6px;'></div>", unsafe_allow_html=True)
-
-elif st.session_state.vista_cca == "inscripcion":
-    st.markdown("#### 📝 Formulario de Inscripción Oficial")
-    st.caption("Costo de inscripción Futuras Estrellas V2: **RD$650** • Adjunta la foto o captura de tu comprobante de pago.")
-    with st.form("form_cca"):
-        c1, c2 = st.columns(2, gap="medium")
-        with c1:
-            nombre = st.text_input("👤 Nombre Completo del Jugador *", placeholder="Ej. Mateo Gómez")
-            torneo_sel = st.selectbox("🏆 Evento / Torneo *", [e["titulo"] for e in FUTUROS_EVENTOS])
-            id_fide = st.text_input("🌐 ID FIDE / ELO Actual (Obligatorio) *", placeholder="Ej. 6409876 (ELO: 1580)")
-        with c2:
-            categoria = st.selectbox("🎯 Categoría por ELO *", ["Sub-1600", "Sub-1800", "Up-1801", "Abierto / Juvenil"])
-            telefono = st.text_input("📱 WhatsApp del Padre / Tutor *", placeholder="Ej. 849-555-0123")
-            pago_metodo = st.selectbox("💳 Método de Pago Realizado *", ["Transferencia Bancaria (RD$650)", "Depósito Bancario (RD$650)"])
-        st.markdown("<hr style='margin:12px 0;border-color:#E2E8F0;'>", unsafe_allow_html=True)
-        comprobante = st.file_uploader(
-            "📸 Adjuntar Foto o Captura del Comprobante de Pago (Obligatorio) *",
-            type=["png", "jpg", "jpeg", "webp", "pdf"],
-            help="Puedes tomar una foto directamente con la cámara de tu celular o subir el capture de la transferencia."
-        )
-        submit = st.form_submit_button("✅ VALIDAR COMPROBANTE Y GENERAR INSCRIPCIÓN", use_container_width=True)
-
-    if submit:
-        if not nombre or not telefono or not id_fide:
-            st.error("⚠️ Por favor completa el nombre del jugador, su ID/ELO FIDE y el WhatsApp de contacto.")
-        elif comprobante is None:
-            st.error("🚫 **Comprobante obligatorio:** Debes subir una foto o captura de pantalla del pago para completar tu inscripción.")
-        else:
-            msg_wa = (
-                f"*INSCRIPCIÓN CONFIRMADA - CARIBBEAN CHESS ACADEMY*%0A"
-                f"• *Torneo:* {urllib.parse.quote(torneo_sel)}%0A"
-                f"• *Jugador:* {urllib.parse.quote(nombre)}%0A"
-                f"• *ID/ELO FIDE:* {urllib.parse.quote(id_fide)}%0A"
-                f"• *Categoría:* {urllib.parse.quote(categoria)}%0A"
-                f"• *Pago:* {urllib.parse.quote(pago_metodo)}%0A"
-                f"• *Comprobante:* Adjunto ({urllib.parse.quote(comprobante.name)})%0A"
-                f"• *Contacto:* {urllib.parse.quote(telefono)}"
-            )
-            st.success(f"✅ ¡Comprobante verificado (`{comprobante.name}`) y ficha lista para **{nombre}**!")
-            if comprobante.type.startswith("image"):
-                with st.expander("👁️ Ver vista previa del comprobante cargado", expanded=True):
-                    st.image(comprobante, width=260)
-            st.info("📲 **Último paso:** Pulsa el botón verde abajo para abrir WhatsApp y recuerda **adjuntar esta misma imagen del comprobante** en el chat para confirmar tu cupo.")
-            st.link_button(
-                "📲 ENVIAR FICHA Y COMPROBANTE POR WHATSAPP (849-440-3222)",
-                f"https://wa.me/18494403222?text={msg_wa}",
-                use_container_width=True
-            )
-
-msg_directo = urllib.parse.quote("Hola Caribbean Chess Academy, deseo más información sobre sus torneos y próximos eventos.")
-st.markdown(
-    f'<div class="sticky-bottom-bar"><a href="https://wa.me/18494403222?text={msg_directo}" target="_blank" class="sticky-wa-btn">'
-    '💬 MÁS INFORMACIÓN E INSCRIPCIONES • 849-440-3222</a></div>',
-    unsafe_allow_html=True
-)
+        '<div class="kpi-box"><div class="kpi-icon">💵</div><div class="kpi-title">Inscripción</div><div class="kpi-
